@@ -1,0 +1,39 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: knowledge-retrieval-rag
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  redis:
+    host: 172.22.173.190
+    port: 6379
+    password: 123321
+    database: 1
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 10000ms
+
+# DeepSeek API Configuration (OpenAI-compatible)
+deepseek:
+  api-key: ${DEEPSEEK_API_KEY}
+  chat-url: https://api.deepseek.com/v1/chat/completions
+  embedding-url: http://localhost:11434/v1/embeddings
+  chat-model: deepseek-chat
+  embedding-model: nomic-embed-text
+
+# Text Chunking (for TXT/PDF)
+chunking:
+  chunk-size: 500
+  overlap-size: 50
+
+# Logging
+logging:
+  level:
+    com.knowledgeretrieval: DEBUG
